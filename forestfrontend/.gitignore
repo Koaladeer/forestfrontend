@@ -6,6 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+### H2 DB ###
+*.mv.db
+*.trace.db
+
 
 node_modules
 .DS_Store
