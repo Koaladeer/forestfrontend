@@ -1,5 +1,8 @@
 <template>
-    <table v-if="filteredData.length" class="border border-green-500 rounded bg-white">
+<!-- template from   https://v2.vuejs.org/v2/examples/grid-component.html -->
+    <div class="max-w-lg min-w-fit">
+    <button @click="isActive = !isActive ; changeButtonText()" class=" max-h-8 max-w-screen-sm text-amber-300 font-bold text-lg bg-cyan-800  rounded-full hover:delay-100 hover:text-amber-400 hover:bg-cyan-900">{{ buttonText }}</button>
+    <table v-if="filteredData.length && isActive" class="border border-green-500 rounded bg-white">
         <thead>
         <tr class="bg-green-500 text-white">
             <th v-for="key in columns"
@@ -24,7 +27,8 @@
         </tr>
         </tbody>
     </table>
-    <p v-else class="text-center text-gray-600">No matches found.</p>
+    <p v-else-if="awesome" class="text-center text-gray-600">No matches found.</p>
+    </div>
 </template>
 
 <script>
@@ -36,8 +40,10 @@ export default {
     },
     data() {
         return {
+            buttonText: 'Hide Datatable',
+            isActive : true,
             sortKey: '',
-            sortOrders: this.columns.reduce((o, key) => ((o[key] = 1), o), {})
+            sortOrders: this.columns.reduce((o, key) => ((o[key] = 1), o), {}),
         }
     },
     computed: {
@@ -64,6 +70,11 @@ export default {
         }
     },
     methods: {
+        changeButtonText(){
+            if (this.isActive)
+            this.buttonText = 'Hide Datatable'
+            else this.buttonText = 'Show Datatable'
+        },
         sortBy(key) {
             this.sortKey = key
             this.sortOrders[key] = this.sortOrders[key] * -1
