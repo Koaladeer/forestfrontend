@@ -7,12 +7,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: use node 16.13.1
+    - name: use node 18.16.0
       uses: actions/setup-node@v2
       with:
-        node-version: 16.13.1
+        node-version: 18.16.0
     - name: Install dependencies
-      run: npm install -g npm@latest
-    - run: npm ci 
-    - name: run tests
+      run: npm ci    
+      working-directory: .
+    - name: install vitejs plugin-vue
+      run: npm install --save-dev @vitejs/plugin-vue
+    - name: Run tests
       run: npm run test:unit
+      working-directory: .
