@@ -29,4 +29,5 @@ jobs:
       - run: npm run build --if-present
       - name: Execute Unit tests
       - run: npm ci
+      - name: run unit tests
       - run: npm run test:unit
