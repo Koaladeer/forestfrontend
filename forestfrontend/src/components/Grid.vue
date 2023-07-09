@@ -19,7 +19,7 @@
             <th></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="table">
         <tr v-for="entry in filteredData" class="border-b border-gray-200">
             <td v-for="key in columns" class="px-4 py-2">{{entry[key]}}</td>
             <td><button class="btn-select" @click="selectEntry(entry)">Select</button></td>

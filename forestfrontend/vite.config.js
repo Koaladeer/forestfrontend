@@ -7,6 +7,10 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   server: {
+    test:{
+      globals:true,
+      setupFiles: 'src/components/__tests__/setupTests.ts'
+    },
     proxy: {
       '/api': 'http://localhost:8080',
       '^/messages/delete/.*':'http://localhost:8080',
