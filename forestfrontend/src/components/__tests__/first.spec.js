@@ -1,7 +1,32 @@
 import {render, screen, fireEvent, waitFor} from "@testing-library/vue";
-import {describe, it, expect} from "vitest";
 import App from "../../App.vue";
 import Chat from "../Chat.vue";
+import { describe, it, expect, beforeAll, afterEach, afterAll } from "vitest";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
+import { getresponse,postresponse } from "./mock.api";
+import "whatwg-fetch";
+
+export const restHandlers = [
+    rest.get("http://localhost:8080/messages", (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json(getresponse));
+    }),
+
+    rest.post("http://localhost:5173/api/chat", (req, res, ctx) => {
+        return res(ctx.status(200), ctx.json(postresponse));
+    }),
+
+];
+const server = setupServer(...restHandlers);
+
+// Start server before all tests
+beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
+
+//  Close server after all tests
+afterAll(() => server.close());
+
+// Reset handlers after each test `important for test isolation`
+afterEach(() => server.resetHandlers());
 
 describe("my app", () => {
     it("renders correctly", async () => {
@@ -22,8 +47,8 @@ describe("my app", () => {
             textInp.value = "Hallo"
             const sendButton = await screen.getByText('Send', {exact: false});
             await fireEvent.click(sendButton);
-            //const message = await screen.getByText("Ich bin ein KI-Modell");
             // it'll wait until the mock function has been called once.
             await waitFor(() => expect(screen.findByText('Ich bin ein KI-Modell'),{exact: false}));
+
         });
 });

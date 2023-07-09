@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterEach, afterAll } from "vitest";
-import { rest,graphql } from "msw";
+import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { getresponse,postresponse } from "./mock.api";
 import "whatwg-fetch";
