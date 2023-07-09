@@ -17,6 +17,7 @@ jobs:
           npm --version
     - name: pwd
       run:  pwd
+            ls
     - name: Install dependencies full
       run: npm i
     - name: Install dependencies
