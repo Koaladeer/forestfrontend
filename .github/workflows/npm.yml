@@ -3,17 +3,17 @@ on: ["push"]
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: use node 18.16.0
-      uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
       with:
-        node-version: 18.16.0
+          node-version: '18.16.0'
     - name: "Update npm"
       run:
-          npm install -g npm@latest
+          npm install -g npm@9.5.1
           npm --version
     - name: pwd
       run:  pwd
