@@ -11,6 +11,10 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 18.16.0
+    - name: "Update npm"
+      run:
+          npm install -g npm@latest
+          npm --version
     - name: pwd
       run:  pwd
     - name: Install dependencies
