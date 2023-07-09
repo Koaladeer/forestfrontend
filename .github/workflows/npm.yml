@@ -11,18 +11,25 @@ jobs:
       uses: actions/setup-node@v3
       with:
           node-version: '18.16.0'
+          working-directory: ./forestfrontend
+    - name: ls
+      working-directory: ./forestfrontend
+      run : ls
     - name: "Update npm"
+      working-directory: ./forestfrontend
       run:
           npm install -g npm@9.5.1
-          npm --version
-    - name: pwd
-      run:  cd .\forestfrontend
+          npm --version   
     - name: Install dependencies full
+      working-directory: ./forestfrontend
       run: npm i
     - name: Install dependencies
+      working-directory: ./forestfrontend
       run: npm ci
     - name: install vitejs plugin-vue
+      working-directory: ./forestfrontend
       run: npm install --save-dev @vitejs/plugin-vue
     - name: Run tests
+      working-directory: ./forestfrontend
       run: npm run test:unit
   
