@@ -16,8 +16,7 @@ jobs:
           npm install -g npm@9.5.1
           npm --version
     - name: pwd
-      run:  pwd
-            ls
+      run:  ls
     - name: Install dependencies full
       run: npm i
     - name: Install dependencies
