@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-lg min-w-fit mx-auto my-10 bg-lime-300   ">
+    <div class="max-w-lg min-w-fit mx-auto my-10 bg-emerald-300   ">
         <div>
             <button @click="personaChoice('City')"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"> City
@@ -43,7 +43,7 @@
 
 <script>
 import {ref} from 'vue'
-
+import  {} from '../App.vue'
 export default {
     data() {
         return {
@@ -75,6 +75,7 @@ export default {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({id: aiMessageID, content: aiMessage,sId:this.sessionId}),
+
             })
 
         },
